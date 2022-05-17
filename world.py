@@ -5,7 +5,8 @@
 from turtlepy_enacter import TurtlePyEnacter
 # from Agent5 import Agent5
 # from OsoyooCarEnacter import OsoyooCarEnacter
-#Alhousseini
+import random
+
 
 class Agent:
     def __init__(self, _hedonist_table):
@@ -13,6 +14,8 @@ class Agent:
         self.hedonist_table = _hedonist_table
         self._action = None
         self.anticipated_outcome = None
+        self.counter = 0
+        self.previous_outcome = None
 
     def action(self, outcome):
         """ tracing the previous cycle """
@@ -21,18 +24,30 @@ class Agent:
                   ", Anticipation: " + str(self.anticipated_outcome) +
                   ", Outcome: " + str(outcome) +
                   ", Satisfaction: (anticipation: " + str(self.anticipated_outcome == outcome) +
-                  ", valence: " + str(self.hedonist_table[self._action][outcome]) + ")")
+                  ", valence: " + str(self.hedonist_table[self._action][outcome]) +
+                  "; counter: " + str(self.counter) + ")")
+            self.counter += 1
 
         """ Computing the next action to enact """
         # TODO: Implement the agent's decision mechanism
         self._action = 0
-        # TODO: Implement the agent's anticipation mechanism
-        self.anticipated_outcome = 0
-        return self._action
+        if self.counter >= 5:
+            self._action = 1
+        if self.counter > 9:
+            self._action = 0
+        if self.counter > 14:
+            self._action = 1
+        if self.counter > 19:
+            self._action = 0
+        #     self.previous_outcome = outcome
+        # # TODO: Implement the agent's anticipation mechanism
+        # self.anticipated_outcome = 0
+        # return self._action
 
 
 class Environment1:
     """ In Environment 1, action 0 yields outcome 0, action 1 yields outcome 1 """
+
     def outcome(self, action):
         # return int(input("entre 0 1 ou 2"))
         if action == 0:
@@ -43,6 +58,7 @@ class Environment1:
 
 class Environment2:
     """ In Environment 2, action 0 yields outcome 1, action 1 yields outcome 0 """
+
     def outcome(self, action):
         if action == 0:
             return 1
@@ -52,6 +68,7 @@ class Environment2:
 
 class Environment3:
     """ Environment 3 yields outcome 1 only when the agent alternates actions 0 and 1 """
+
     def __init__(self):
         """ Initializing Environment3 """
         self.previous_action = 0
@@ -64,15 +81,21 @@ class Environment3:
         return _outcome
 
 
+class Environment4:
+    def outcome(self, action):
+        return random.randint(0, 1)
+
+
 # TODO Define the hedonist valance of interactions (action, outcome)
 hedonist_table = [[-1, 1], [-1, 1]]
 # TODO Choose an agent
 a = Agent(hedonist_table)
 # a = Agent5(hedonist_table)
 # TODO Choose an environment
-e = Environment1()
+# e = Environment1()
 # e = Environment2()
 # e = Environment3()
+e = Environment4()
 # e = TurtleSimEnacter()
 # e = TurtlePyEnacter()
 # e = OsoyooCarEnacter()
@@ -80,6 +103,6 @@ e = Environment1()
 if __name__ == '__main__':
     """ The main loop controlling the interaction of the agent with the environment """
     outcome = 0
-    for i in range(70):
+    for i in range(20):
         action = a.action(outcome)
         outcome = e.outcome(action)
