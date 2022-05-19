@@ -12,10 +12,10 @@ class Agent:
     def __init__(self, _hedonist_table):
         """ Creating our agent """
         self.hedonist_table = _hedonist_table
-        self._action = None
-        self.anticipated_outcome = None
+        self._action = 0
+        self.anticipated_outcome = 0
         self.counter = 0
-        self.previous_outcome = None
+        self.previous_outcome = 0
 
     def action(self, outcome):
         """ tracing the previous cycle """
@@ -30,7 +30,7 @@ class Agent:
 
         """ Computing the next action to enact """
         # TODO: Implement the agent's decision mechanism
-        self._action = 0
+        """self._action = 0
         if self.counter >= 5:
             self._action = 1
         if self.counter > 9:
@@ -38,7 +38,7 @@ class Agent:
         if self.counter > 14:
             self._action = 1
         if self.counter > 19:
-            self._action = 0
+            self._action = 0"""
         #     self.previous_outcome = outcome
         # # TODO: Implement the agent's anticipation mechanism
         # self.anticipated_outcome = 0
@@ -46,14 +46,33 @@ class Agent:
 
 
 class Environment1:
+    def __init__(self, _hedonist_table):
+        """ Creating our agent """
+        self.hedonist_table = _hedonist_table
+        self._action = 0
+        self.anticipated_outcome = 0
+        self.counter = 0
+        self.previous_outcome = 0
     """ In Environment 1, action 0 yields outcome 0, action 1 yields outcome 1 """
-
     def outcome(self, action):
         # return int(input("entre 0 1 ou 2"))
-        if action == 0:
-            return 0
-        else:
-            return 1
+
+        self._action = 0
+        self.anticipated_outcome = 0
+        if self.counter >= 5:
+            self._action = 1
+            self.anticipated_outcome = 1
+        if self.counter > 9:
+            self._action = 0
+            self.anticipated_outcome = 0
+        if self.counter > 14:
+            self._action = 1
+            self.anticipated_outcome = 1
+        if self.counter > 19:
+            self._action = 0
+            self.anticipated_outcome = 0
+
+
 
 
 class Environment2:
