@@ -6,7 +6,7 @@ from turtlepy_enacter import TurtlePyEnacter
 # from Agent5 import Agent5
 # from OsoyooCarEnacter import OsoyooCarEnacter
 import random
-
+from Agent2 import Agent2
 
 class Agent:
     def __init__(self, _hedonist_table):
@@ -29,15 +29,15 @@ class Agent:
 
         """ Computing the next action to enact """
         # TODO: Implement the agent's decision mechanism
-        if outcome == self.previous_outcome:
-            self.counter += 1
-        if self.counter == 4:
-            if self._action == 0:
-                self._action = 1
-            else:
-                self._action = 0
-            self.counter = 0
-        self.previous_outcome = outcome
+        # if outcome == self.previous_outcome:
+        #     self.counter += 1
+        # if self.counter == 4:
+        #     if self._action == 0:
+        #         self._action = 1
+        #     else:
+        #         self._action = 0
+        #     self.counter = 0
+        # self.previous_outcome = outcome
 
 
 
@@ -92,7 +92,7 @@ class Environment4:
 # TODO Define the hedonist valance of interactions (action, outcome)
 hedonist_table = [[-1, 1], [-1, 1]]
 # TODO Choose an agent
-a = Agent(hedonist_table)
+a = Agent2(hedonist_table)
 # a = Agent5(hedonist_table)
 # TODO Choose an environment
 e = Environment1()
