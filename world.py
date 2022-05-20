@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+# !/usr/bin/env python
 # Olivier Georgeon, 2021.
 # This code is used to teach Developmental AI.
 # from turtlesim_enacter import TurtleSimEnacter # requires ROS
@@ -13,66 +13,50 @@ class Agent:
         """ Creating our agent """
         self.hedonist_table = _hedonist_table
         self._action = 0
-        self.anticipated_outcome = 0
+        self.anticipated_outcome = None
         self.counter = 0
         self.previous_outcome = 0
 
     def action(self, outcome):
         """ tracing the previous cycle """
         if self._action is not None:
-            print("Action: " + str(self._action) +
-                  ", Anticipation: " + str(self.anticipated_outcome) +
-                  ", Outcome: " + str(outcome) +
-                  ", Satisfaction: (anticipation: " + str(self.anticipated_outcome == outcome) +
-                  ", valence: " + str(self.hedonist_table[self._action][outcome]) +
-                  "; counter: " + str(self.counter) + ")")
-            self.counter += 1
+                print("Action: " + str(self._action) +
+                      ", Anticipation: " + str(self.anticipated_outcome) +
+                      ", Outcome: " + str(outcome) +
+                      ", Satisfaction: (anticipation: " + str(self.anticipated_outcome == outcome) +
+                      ", valence: " + str(self.hedonist_table[self._action][outcome]) +
+                      "; counter: " + str(self.counter) + ")")
 
         """ Computing the next action to enact """
         # TODO: Implement the agent's decision mechanism
-        """self._action = 0
-        if self.counter >= 5:
-            self._action = 1
-        if self.counter > 9:
-            self._action = 0
-        if self.counter > 14:
-            self._action = 1
-        if self.counter > 19:
-            self._action = 0"""
+        if outcome == self.previous_outcome:
+            self.counter += 1
+        if self.counter == 4:
+            if self._action == 0:
+                self._action = 1
+            else:
+                self._action = 0
+            self.counter = 0
+        self.previous_outcome = outcome
+
+
+
+
+
         #     self.previous_outcome = outcome
         # # TODO: Implement the agent's anticipation mechanism
-        # self.anticipated_outcome = 0
-        # return self._action
+        self.anticipated_outcome = 0
+        return self._action
 
 
 class Environment1:
-    def __init__(self, _hedonist_table):
-        """ Creating our agent """
-        self.hedonist_table = _hedonist_table
-        self._action = 0
-        self.anticipated_outcome = 0
-        self.counter = 0
-        self.previous_outcome = 0
     """ In Environment 1, action 0 yields outcome 0, action 1 yields outcome 1 """
     def outcome(self, action):
         # return int(input("entre 0 1 ou 2"))
-
-        self._action = 0
-        self.anticipated_outcome = 0
-        if self.counter >= 5:
-            self._action = 1
-            self.anticipated_outcome = 1
-        if self.counter > 9:
-            self._action = 0
-            self.anticipated_outcome = 0
-        if self.counter > 14:
-            self._action = 1
-            self.anticipated_outcome = 1
-        if self.counter > 19:
-            self._action = 0
-            self.anticipated_outcome = 0
-
-
+        if action == 0:
+            return 0
+        else:
+            return 1
 
 
 class Environment2:
@@ -111,10 +95,10 @@ hedonist_table = [[-1, 1], [-1, 1]]
 a = Agent(hedonist_table)
 # a = Agent5(hedonist_table)
 # TODO Choose an environment
-# e = Environment1()
+e = Environment1()
 # e = Environment2()
 # e = Environment3()
-e = Environment4()
+# e = Environment4()
 # e = TurtleSimEnacter()
 # e = TurtlePyEnacter()
 # e = OsoyooCarEnacter()
@@ -122,6 +106,6 @@ e = Environment4()
 if __name__ == '__main__':
     """ The main loop controlling the interaction of the agent with the environment """
     outcome = 0
-    for i in range(20):
+    for i in range(10):
         action = a.action(outcome)
         outcome = e.outcome(action)
