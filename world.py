@@ -3,17 +3,18 @@
 # This code is used to teach Developmental AI.
 # from turtlesim_enacter import TurtleSimEnacter # requires ROS
 from turtlepy_enacter import TurtlePyEnacter
-# from Agent5 import Agent5
-# from OsoyooCarEnacter import OsoyooCarEnacter
 import random
 from Agent2 import Agent2
 from Agent3 import Agent3
+from Agent5 import Agent5
+from OsoyooCarEnacter import OsoyooCarEnacter
+ROBOT_IP = "192.168.4.1"
 
 
 class Agent:
-    def __init__(self, _hedonist_table):
+    def __init__(self, valence_table):
         """ Creating our agent """
-        self.hedonist_table = _hedonist_table
+        self.valence_table = valence_table
         self._action = 0
         self.anticipated_outcome = None
         self.counter = 0
@@ -26,7 +27,7 @@ class Agent:
                       ", Anticipation: " + str(self.anticipated_outcome) +
                       ", Outcome: " + str(outcome) +
                       ", Satisfaction: (anticipation: " + str(self.anticipated_outcome == outcome) +
-                      ", valence: " + str(self.hedonist_table[self._action][outcome]) +
+                      ", valence: " + str(self.valence_table[self._action][outcome]) +
                       "; counter: " + str(self.counter) + ")")
 
         """ Computing the next action to enact """
@@ -86,16 +87,17 @@ class Environment3:
         return _outcome
 
 
+
 class Environment4:
     def outcome(self, action):
         return random.randint(0, 1)
 
 
 # TODO Define the hedonist valance of interactions (action, outcome)
-hedonist_table = [[-1, 1], [-1, 1]]
+valence_table = [[-1, 1], [-1, 1]]
 # TODO Choose an agent
 # a = Agent2(hedonist_table)
-a = Agent3(hedonist_table)
+a = Agent3(valence_table)
 # TODO Choose an environment
 e = Environment1()
 # e = Environment2()
@@ -103,7 +105,7 @@ e = Environment1()
 # e = Environment4()
 # e = TurtleSimEnacter()
 # e = TurtlePyEnacter()
-# e = OsoyooCarEnacter()
+# e = OsoyooCarEnacter(ROBOT_IP)
 
 if __name__ == '__main__':
     """ The main loop controlling the interaction of the agent with the environment """
