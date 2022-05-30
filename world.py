@@ -6,7 +6,7 @@ from turtlepy_enacter import TurtlePyEnacter
 import random
 from Agent2 import Agent2
 from Agent3 import Agent3
-from Agent5 import Agent5
+# from Agent5 import Agent5
 from OsoyooCarEnacter import OsoyooCarEnacter
 ROBOT_IP = "192.168.4.1"
 
