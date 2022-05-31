@@ -100,11 +100,11 @@ valence_table = [[-1, 1], [-1, 1]]
 a = Agent3(valence_table)
 # TODO Choose an environment
 e = Environment1()
-# e = Environment2()
+#e = Environment2()
 # e = Environment3()
 # e = Environment4()
 # e = TurtleSimEnacter()
-# e = TurtlePyEnacter()
+e = TurtlePyEnacter()
 # e = OsoyooCarEnacter(ROBOT_IP)
 
 if __name__ == '__main__':

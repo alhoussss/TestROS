@@ -25,18 +25,33 @@ class Agent3:
 
 
         # Choisir la prochaine action
-        if self._action == 0:
-            self.outcome_for_action0 = outcome
-        else:
-            self.outcome_for_action1 = outcome
+        #
+        # if self._action == 0:
+        #     self.outcome_for_action0 = outcome
+        # if self._action == 1:
+        #     self.outcome_for_action1 = outcome
+        #
+        # valence0 = self.valence_table[0][self.outcome_for_action0]
+        # valence1 = self.valence_table[1][self.outcome_for_action1]
+        #
+        #
+        # if valence0 > valence1:
+        #     self.anticipated_outcome = self.outcome_for_action0
+        #
+        #     self._action = 0
+        # elif valence0 == valence1:
+        #     self._action = random.randint(0, 1)
+        #     if self._action == 0:
+        #         self.anticipated_outcome = self.outcome_for_action0
+        #     else:
+        #         self.anticipated_outcome = self.outcome_for_action1
+        # else:
+        #     self.anticipated_outcome = self.outcome_for_action1
+        #     self._action = 1
+        #
+        # return self._action
 
-        valence0 = self.valence_table[0][self.outcome_for_action0]
-        valence1 = self.valence_table[1][self.outcome_for_action1]
+          self._action = random.randint(0,2)
 
-        if valence0 > valence1:
-            self._action = 0
-        else:
-            self._action = 1
 
-        return self._action
 
