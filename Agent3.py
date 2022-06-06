@@ -1,5 +1,7 @@
 # !/usr/bin/env python
 import random
+
+
 class Agent3:
 
     def __init__(self,valence_table):
@@ -51,7 +53,6 @@ class Agent3:
         #
         # return self._action
 
-          self._action = random.randint(0,2)
 
 
 

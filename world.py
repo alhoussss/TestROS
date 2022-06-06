@@ -5,7 +5,8 @@
 from turtlepy_enacter import TurtlePyEnacter
 import random
 from Agent2 import Agent2
-from Agent3 import Agent3
+# from Agent3 import Agent3
+from Agent4 import Agent4
 # from Agent5 import Agent5
 from OsoyooCarEnacter import OsoyooCarEnacter
 ROBOT_IP = "192.168.4.1"
@@ -97,10 +98,11 @@ class Environment4:
 valence_table = [[-1, 1], [-1, 1]]
 # TODO Choose an agent
 # a = Agent2(hedonist_table)
-a = Agent3(valence_table)
+# a = Agent3(valence_table)
+a = Agent4(valence_table)
 # TODO Choose an environment
-e = Environment1()
-#e = Environment2()
+# e = Environment1()
+# e = Environment2()
 # e = Environment3()
 # e = Environment4()
 # e = TurtleSimEnacter()
