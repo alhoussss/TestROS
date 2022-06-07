@@ -13,5 +13,6 @@ On récupère l'outcome pour dire que si l'outcome de cette action est
 égale à l'outcome correspondant à un obstacle, qu'il change alors l'action 
 en virant soit à droite soit à gauche.
 ```
-![](Capture d’écran 2022-06-07 101240.png)
+
+![](tortu.png)
 
