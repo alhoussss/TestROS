@@ -106,8 +106,8 @@ a = Agent4(valence_table)
 # e = Environment3()
 # e = Environment4()
 # e = TurtleSimEnacter()
-e = TurtlePyEnacter()
-# e = OsoyooCarEnacter(ROBOT_IP)
+# e = TurtlePyEnacter()
+e = OsoyooCarEnacter(ROBOT_IP)
 
 if __name__ == '__main__':
     """ The main loop controlling the interaction of the agent with the environment """
