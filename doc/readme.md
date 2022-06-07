@@ -1,6 +1,5 @@
+
 ![](Capture d’écran 2022-06-07 101240.png)
-
-
 # Commandes générales
 ```bash
 L'action 0 fait avancer la tortue.
