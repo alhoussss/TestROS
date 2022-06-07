@@ -26,16 +26,14 @@ class Agent4:
                       ", valence: " + str(self.valence_table[self._action][outcome]) +
                       "; counter: " + str(self.counter) + ")")
 
-                # Choisir la prochaine action
-        self._action = random.randint(0,2)
+         # self._action = random.randint(0, 2)
         if self._action == 0:
             self.outcome_for_action0 = outcome
+        if self.outcome_for_action0 == 1:
             self._action = 1
-        elif self._action == 1:
             self.outcome_for_action1 = outcome
-            self._action = 2
-        else:
-            self.outcome_for_action2 = outcome
+        if self.outcome_for_action1 == 0:
             self._action = 0
+            self.outcome_for_action0 = outcome
 
         return self._action
